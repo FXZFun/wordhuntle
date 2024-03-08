@@ -24,7 +24,7 @@ const frequencies = [
     72,  // n
     61,  // o
     28,  // p
-    0,   // q, fuck you q
+    0,   // q
     74,  // r
     88,  // s
     68,  // t
@@ -73,7 +73,7 @@ const clone2dArray = array => {
 /* seed generation */
 
 const getTodaysSeed = () => {
-    return Math.floor(Date.now() / 86400000);
+    return Math.floor((new Date().getTime()) / 86400000);
 }
 
 /* board generation */
@@ -126,6 +126,7 @@ const generateBoard = prng => {
 
         // if we have no options, try again from the other end
         if (options.length === 0) {
+            console.log("NO OPTS");
             path.reverse();
             c--;
             continue;
