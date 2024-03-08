@@ -18,6 +18,7 @@ const StyledTopBar = styled.div`
     align-items: center;
     padding: 0.375rem 0.75rem;
     gap: 0.625rem;
+    height: 55px;
 `
 
 const Title = styled.h1`
@@ -43,10 +44,10 @@ const TopBar = ({darkMode, setDarkMode}) => {
     const [shareState, toggleShare] = usePopupTransition();
 
     useEffect(() => {
-        const visitedFlag = window.localStorage.getItem("visitedFlag");
+        const visitedFlag = window.localStorage.getItem("wordhuntle-visitedFlag");
         if (!visitedFlag) {
             toggleHelp(true);
-            window.localStorage.setItem("visitedFlag", 1);
+            window.localStorage.setItem("wordhuntle-visitedFlag", 1);
         }
     }, [toggleHelp]);
 

@@ -81,7 +81,7 @@ const StyledApp = styled.div`
 `
 
 const App = () => {
-	const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
+	const [darkMode, setDarkMode] = useLocalStorage("wordhuntle-darkMode", false);
 	return (
 		<>
 			<GlobalStyle darkMode={darkMode}/>

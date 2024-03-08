@@ -61,7 +61,7 @@ const Yesterday = () => {
 
     const board = useMemo(() => generateYesterdaysBoard(), []);
     const allWords = useMemo(() => findAllWords(board), [board]);
-    const foundWords = JSON.parse(window.localStorage.getItem("yesterdaysFoundWords")) ?? [];
+    const foundWords = JSON.parse(window.localStorage.getItem("wordhuntle-yesterdaysFoundWords")) ?? [];
 
     return (
         <Container>
