@@ -41,7 +41,7 @@ const ShareScreen = () => {
         }
     }
 
-    const seed = JSON.parse(window.localStorage.getItem("seed")) ?? 0;
+    const seed = JSON.parse(window.localStorage.getItem("wordhuntle-seed")) ?? 0;
     const date = new Date(seed * 86400000);
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][date.getUTCMonth()];
 

@@ -43,10 +43,10 @@ const TopBar = ({darkMode, setDarkMode}) => {
     const [shareState, toggleShare] = usePopupTransition();
 
     useEffect(() => {
-        const visitedFlag = window.localStorage.getItem("visitedFlag");
+        const visitedFlag = window.localStorage.getItem("wordhuntle-visitedFlag");
         if (!visitedFlag) {
             toggleHelp(true);
-            window.localStorage.setItem("visitedFlag", 1);
+            window.localStorage.setItem("wordhuntle-visitedFlag", 1);
         }
     }, [toggleHelp]);
 

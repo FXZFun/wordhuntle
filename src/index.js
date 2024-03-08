@@ -6,17 +6,17 @@ import { getTodaysSeed } from './utils/utils';
 
 // check if our local storage is out of date, and update it if so
 const todaysSeed = getTodaysSeed();
-const seed = JSON.parse(window.localStorage.getItem("seed"));
+const seed = JSON.parse(window.localStorage.getItem("wordhuntle-seed"));
 
 if (seed !== todaysSeed) {
 	if (seed === todaysSeed - 1) {
-		const foundWords = localStorage.getItem("foundWords");
-		window.localStorage.setItem("yesterdaysFoundWords", foundWords);
+		const foundWords = localStorage.getItem("wordhuntle-foundWords");
+		window.localStorage.setItem("wordhuntle-yesterdaysFoundWords", foundWords);
 	} else {
-		window.localStorage.removeItem("yesterdaysFoundWords");
+		window.localStorage.removeItem("wordhuntle-yesterdaysFoundWords");
 	}
-	window.localStorage.setItem("seed", JSON.stringify(todaysSeed));
-	window.localStorage.removeItem("foundWords");
+	window.localStorage.setItem("wordhuntle-seed", JSON.stringify(todaysSeed));
+	window.localStorage.removeItem("wordhuntle-foundWords");
 }
 
 ReactDOM.render(
