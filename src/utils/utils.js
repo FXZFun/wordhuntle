@@ -24,7 +24,7 @@ const frequencies = [
     72,  // n
     61,  // o
     28,  // p
-    0,   // q, fuck you q
+    0,   // q
     74,  // r
     88,  // s
     68,  // t

@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
 	*::before,
 	*::after {
 		box-sizing: border-box;
-		font-family: 'Source Serif 4', sans-serif;
+		font-family: 'Exo 2', sans-serif;
 		color: var(--clr-text);
 	}
 
