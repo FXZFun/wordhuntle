@@ -73,7 +73,7 @@ const clone2dArray = array => {
 /* seed generation */
 
 const getTodaysSeed = () => {
-    return Math.floor(Date.now() / 86400000);
+    return Math.floor((new Date().getTime()) / 86400000);
 }
 
 /* board generation */
@@ -126,6 +126,7 @@ const generateBoard = prng => {
 
         // if we have no options, try again from the other end
         if (options.length === 0) {
+            console.log("NO OPTS");
             path.reverse();
             c--;
             continue;
