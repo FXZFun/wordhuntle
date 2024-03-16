@@ -9,7 +9,7 @@ const GameProvider = ({children}) => {
     // state
     // anything accessed from the 'mouseup' event handler needs to use a ref
     const [currentWord, currentWordRef, setCurrentWord] = useStateRef("");
-    const [foundWords, foundWordsRef, setFoundWords] = useLocalStorageRef("foundWords", []);
+    const [foundWords, foundWordsRef, setFoundWords] = useLocalStorageRef("wordhuntle-foundWords", []);
     const [wordActive, setWordActive] = useState(false);
     const [path, setPath] = useState([]);
     const [wordInfo, wordInfoTrigger, setWordInfo] = useStateTrigger(null);
