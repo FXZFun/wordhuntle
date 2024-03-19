@@ -14,6 +14,7 @@ const GameProvider = ({children}) => {
     const [path, setPath] = useState([]);
     const [wordInfo, wordInfoTrigger, setWordInfo] = useStateTrigger(null);
     const [showingHints, setShowingHints] = useState(false);
+    const [lastSubmittedWord, setLastSubmittedWord] = useState("");
 
     const score = useMemo(() => {
         let total = 0;
@@ -55,19 +56,20 @@ const GameProvider = ({children}) => {
         if (newWord.length === 1)
             setWordInfo(null);
         else if (newWord.length < minWordLength)
-            setWordInfo("Too short");
+            setWordInfo(newWord.charAt(0).toUpperCase() + newWord.substring(1).toLowerCase() + " is too short");
         else if (foundWordsRef.current.includes(newWord))
-            setWordInfo("Already found");
+            setWordInfo(newWord.charAt(0).toUpperCase() + newWord.substring(1).toLowerCase()  + " was already found");
         else if (!allWords.includes(newWord))
-            setWordInfo("Not a word");
+            setWordInfo(newWord.charAt(0).toUpperCase() + newWord.substring(1).toLowerCase()  + " is not a word");
         else {
             const foundWordsCopy = [...foundWordsRef.current];
             foundWordsCopy.push(newWord);
             setFoundWords(foundWordsCopy);
-            setWordInfo(`Nice! +${getWordScore(newWord)}`);
+            setWordInfo(`${newWord.charAt(0).toUpperCase() + newWord.substring(1).toLowerCase()} +${getWordScore(newWord)}`);
         }
 
         setWordActive(false);
+        setLastSubmittedWord(newWord);
         setCurrentWord("");
         setPath([]);
     }
@@ -85,12 +87,12 @@ const GameProvider = ({children}) => {
     }, []);
 
     // handle the word info popup
-    useEffect(() => {
-        if (wordInfo === null) return;
-        const timeout = setTimeout(() => setWordInfo(null), 1500);
-        return () => clearTimeout(timeout);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wordInfoTrigger]);
+    // useEffect(() => {
+    //     if (wordInfo === null) return;
+    //     const timeout = setTimeout(() => setWordInfo(null), 1500);
+    //     return () => clearTimeout(timeout);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [wordInfoTrigger]);
 
     // allow a square to retrieve its necessary information
     const getSquareInfo = (x, y) => {
@@ -166,7 +168,9 @@ const GameProvider = ({children}) => {
             levels,
             wordInfo,
             showingHints,
-            setShowingHints
+            setShowingHints,
+            lastSubmittedWord,
+            setWordInfo
         }}>
             {children}
         </GameContext.Provider>

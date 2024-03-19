@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { useGame } from "../providers/GameProvider";
+import FlagIcon from "../icons/FlagIcon";
 
 const StyledWordInfo = styled.div`
     width: 100%;
@@ -51,26 +52,39 @@ const InfoChip = styled.div`
         background-color: #49b84f;
         animation: ${goodAnimation} 0.75s cubic-bezier(0, 0.75, 0.25, 1);
     }
+    animation-fill-mode: forwards;
+`
+
+const Suggest = styled.div`
+    color: white;
+    text-decoration: underline;
+    display: inline-block;
+    font-size: .7rem;
+    vertical-align: middle;
+    cursor: pointer;
 `
 
 const WordInfo = () => {
 
-    const { currentWord, wordInfo } = useGame();
+    const { currentWord, wordInfo, lastSubmittedWord, setWordInfo } = useGame();
 
     let infoClass = "";
-    switch(wordInfo) {
-        case "Too short":
-            infoClass = "error";
-            break;
-        case "Not a word":
-            infoClass = "error";
-            break;
-        case "Already found":
-            infoClass = "warning";
-            break;
-        default:
-            infoClass = "success";
-            break;
+    let suggest = "";
+    if (wordInfo !== null && (wordInfo.endsWith("too short") || wordInfo.startsWith("Oops"))) {
+        infoClass = "error";
+        suggest = "";
+    } else if (wordInfo !== null && wordInfo.endsWith("not a word")) {
+        infoClass = "error";
+        suggest = "Add";
+    } else if (wordInfo !== null && wordInfo.endsWith("already found")) {
+        infoClass = "warning";
+        suggest = "";
+    } else if (wordInfo !== null && wordInfo.startsWith("Thanks")) {
+        infoClass = "success";
+        suggest = "";
+    } else {
+        infoClass = "success";
+        suggest = <FlagIcon />;
     }
 
     return (
@@ -79,7 +93,18 @@ const WordInfo = () => {
                 <CurrentWord>{currentWord}</CurrentWord>
             )}
             {wordInfo !== null && currentWord.length === 0 && (
-                <InfoChip className={infoClass}>{wordInfo}</InfoChip>
+                <InfoChip className={infoClass}>{wordInfo} <Suggest onClick={async () => {
+                    let endpoint = "https://dubster.hazelhope.com/api/wordhuntle/suggest_removal.php";
+                    if (suggest === "Add") {
+                        endpoint = "https://dubster.hazelhope.com/api/wordhuntle/suggest_word.php";
+                    }
+                    let result = await fetch(endpoint + "?word=" + lastSubmittedWord);
+                    if (result.ok) {
+                        setWordInfo("Thanks!");
+                    } else {
+                        setWordInfo("Oops, that didn't work.");
+                    }
+                }}>{suggest}</Suggest></InfoChip>
             )}
         </StyledWordInfo>
     );
