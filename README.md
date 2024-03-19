@@ -11,3 +11,5 @@ You can play it at https://dubster.hazelhope.com/games/wordhuntle/
 Features that were not part of the original repository are:
  - hints
  - dockable popups
+
+Icons are from [Tabler icons](https://tabler.io/icons), and are licensed under an [MIT license](https://github.com/tabler/tabler-icons/blob/main/LICENSE).
