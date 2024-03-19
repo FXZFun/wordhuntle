@@ -54,6 +54,8 @@ const HelpScreen = () => {
             <P>Score points to increase your level. Try to reach the max level each day!</P>
             <Title>More</Title>
             <P>Wordhuntle is updated every day at 8pm EST. Check back in each day for a new board!</P>
+            <P>Found a word that isn't actually a word, or a word that should be accepted?</P>
+            <P>Draw the word on the board, click the flag icon or the add button.</P>
         </>
     );
 }
