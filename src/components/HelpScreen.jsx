@@ -55,7 +55,7 @@ const HelpScreen = () => {
             <Title>More</Title>
             <P>Wordhuntle is updated every day at 8pm EST. Check back in each day for a new board!</P>
             <P>Found a word that isn't actually a word, or a word that should be accepted?</P>
-            <P>CLICK HERE</P>
+            <P>Draw the word on the board, click the flag icon or the add button.</P>
         </>
     );
 }
