@@ -67,6 +67,9 @@ const CloseButton = styled.button`
     width: 0.875rem;
     padding: 0;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const DockButton = CloseButton;
