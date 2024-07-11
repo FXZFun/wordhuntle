@@ -30,7 +30,10 @@ const wordSuggestions = await getWordSuggestions();
 const wordRemovalSuggestions = await getWordRemovalSuggestions();
 let wordList = getWordList();
 
-console.log("Ready to run. It is recommended that you review the additions and removals before you run this script.\n");
+console.log("Ready to run. Suggested words:\n");
+console.log(wordSuggestions.join("\n"), "\n");
+console.log("\nSuggested word removals:\n")
+console.log(wordRemovalSuggestions.join("\n"), "\n");
 await askQuestion("Press ENTER to continue...");
 
 console.log("\nAdding word additions...")
